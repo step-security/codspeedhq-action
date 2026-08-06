@@ -190,7 +190,7 @@ runs:
 
     - name: Cache CodSpeed instruments
       if: inputs.cache-instruments == 'true'
-      uses: actions/cache@v6
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ${{ inputs.instruments-cache-dir }}
         key: codspeed-instruments-${{ steps.versions.outputs.mode-cache-key }}-${{ runner.os }}-${{ runner.arch }}-${{ steps.versions.outputs.kernel-version }}-${{ steps.versions.outputs.runner-version }}
@@ -199,7 +199,7 @@ runs:
 
     - name: Lookup installer hash
       id: installer-hash
-      uses: actions/github-script@v9
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
       env:
         RUNNER_VERSION: ${{ steps.versions.outputs.runner-version }}
       with:
