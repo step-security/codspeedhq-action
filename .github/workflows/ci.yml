@@ -30,7 +30,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check basic action execution
         uses: ./
         with:
@@ -80,7 +85,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check action with version format ${{ matrix.version }}
         uses: ./
         with:
@@ -99,7 +109,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check action with version format ${{ matrix.version }}
         uses: ./
         with:
@@ -113,7 +128,12 @@ jobs:
     outputs:
       versions: ${{ steps.get-versions.outputs.versions }}
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - id: get-versions
         run: echo "versions=$(jq -c 'keys_unsorted | .[-5:]' .codspeed-runner-installer-hashes.json)" >> "$GITHUB_OUTPUT"
 
@@ -127,7 +147,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check action with pinned runner version ${{ matrix.version }}
         uses: ./
         with:
@@ -139,7 +164,12 @@ jobs:
   check-installer-hashes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Verify pinned installer hashes
         run: ./scripts/check-hashes.sh
 
@@ -148,7 +178,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - run: cat .github/test-codspeed.yml
       - name: Check action with config file (no run input)
         uses: ./
@@ -161,7 +196,12 @@ jobs:
     env:
       CODSPEED_SKIP_UPLOAD: true
     steps:
-      - uses: actions/checkout@v7
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Check action with cycle-estimation and exclude-allocations
         uses: ./
         with:
