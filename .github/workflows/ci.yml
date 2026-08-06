@@ -19,10 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-22.04
-          - ubuntu-24.04
-          - ubuntu-latest
+        os: ${{ fromJson(github.actor == 'dependabot[bot]' && '["ubuntu-latest"]' || '["ubuntu-22.04","ubuntu-24.04","ubuntu-latest"]') }}
         mode:
           - simulation
           - instrumentation
@@ -77,10 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version:
-          - "latest"
-          - "4.4.1"
-          - "v4.4.1"
+        version: ${{ fromJson(github.actor == 'dependabot[bot]' && '["latest"]' || '["latest","4.4.1","v4.4.1"]') }}
 
     runs-on: ubuntu-latest
     env:
@@ -99,9 +93,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version:
-          - "1.0.0"
-          - "1.0.0-beta.1"
+        version: ${{ fromJson(github.actor == 'dependabot[bot]' && '["1.0.0"]' || '["1.0.0","1.0.0-beta.1"]') }}
 
     runs-on: ubuntu-latest
     env:
