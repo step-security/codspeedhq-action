@@ -18,6 +18,13 @@ GitHub Actions for running [CodSpeed](https://codspeed.io) in your CI.
     # Leave empty to use targets defined in your project configuration (e.g `codspeed.yml`)
     # https://codspeed.io/docs/cli#configuration
     # ⚠️ WARNING: for action/runner versions lower than v4.9.0, this parameter is required.
+    #
+    # ⚠️ SECURITY: Do not pass user-controlled or untrusted values into this input.
+    # If your workflow uses the `pull_request_target` trigger, ensure the `run` value
+    # comes only from your repository's own workflow file — never from PR metadata
+    # (e.g. branch names, commit messages, or PR titles from a fork). Passing
+    # untrusted input here would allow a malicious contributor to execute arbitrary
+    # commands on the runner with access to repository secrets.
     run: "<YOUR_COMMAND>"
 
     # [REQUIRED]
@@ -72,6 +79,16 @@ GitHub Actions for running [CodSpeed](https://codspeed.io) in your CI.
     # [OPTIONAL]
     # A custom upload url, only if you are using an on premise CodSpeed instance
     upload-url: ""
+
+    # [OPTIONAL]
+    # The version of the runner to use. Defaults to the pinned version bundled with the action.
+    # Accepts a specific version like '3.5.0' or 'v3.5.0', or 'latest' to fetch the newest release.
+    #
+    # ⚠️ SECURITY: Do not pass user-controlled or untrusted values into this input (see 'run' above).
+    # The 'branch:<name>' and 'rev:<sha>' prefixes install directly from the CodSpeedHQ/codspeed
+    # repository without integrity verification — they are intended for CodSpeed developers only
+    # and must not be used in production workflows.
+    runner-version: ""
 
     # [OPTIONAL]
     # The version of the go-runner to use (e.g., 1.0.0, 1.0.0-beta.1). If not specified, the latest version will be installed

@@ -281,6 +281,8 @@ runs:
         GH_STRATEGY: "${{ toJson(strategy) }}"
         # This is needed to properly handle quotes and multiline commands in the 'run' input properly, rather than doing `RUN_INPUT_RUN=${{ inputs.run }}` in the script
         CODSPEED_INPUT_RUN: ${{ inputs.run }}
+        # Passed via env var instead of CLI arg to avoid token exposure in process listings
+        CODSPEED_TOKEN: ${{ inputs.token }}
       run: |
         # Validate required inputs
         # (custom message for smoother v4 migration)
@@ -291,9 +293,6 @@ runs:
 
         # Build the runner arguments array
         RUNNER_ARGS=()
-        if [ -n "${{ inputs.token }}" ]; then
-          RUNNER_ARGS+=(--token "${{ inputs.token }}")
-        fi
         if [ -n "${{ inputs.working-directory }}" ]; then
           RUNNER_ARGS+=(--working-directory="${{ inputs.working-directory }}")
         fi
