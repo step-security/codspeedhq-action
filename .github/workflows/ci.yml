@@ -202,11 +202,12 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - name: Check action with cycle-estimation and exclude-allocations
+      - name: Check action with cycle-estimation, exclude-allocations and simulation-track-subprocess
         uses: ./
         with:
           allow-empty: true
           mode: simulation
           cycle-estimation: "false"
           exclude-allocations: "true"
+          simulation-track-subprocess: "true"
           run: echo "Testing simulation tuning inputs!"
