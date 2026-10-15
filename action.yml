@@ -97,6 +97,18 @@ inputs:
       Requires runner v5.2.0 or later. Defaults to 'false'.
     required: false
 
+  disable-memory-track-physical:
+    description: |
+      Disable physical (resident) memory tracking in `memory` mode. Set to 'true' to disable.
+      Requires runner v5.4.0 or later. Defaults to 'false' (tracking enabled).
+    required: false
+
+  disable-memory-capture-stack:
+    description: |
+      Disable allocation call stack capture in `memory` mode. Set to 'true' to disable.
+      Requires runner v5.4.0 or later. Defaults to 'false' (capture enabled).
+    required: false
+
   config:
     description: "Path to a CodSpeed configuration file (codspeed.yml). If not specified, the runner will look for a codspeed.yml file in the repository root."
     required: false
@@ -105,6 +117,13 @@ inputs:
     description: "Suppress the warning emitted when hash verification is not available (e.g. when using 'latest', branch, or revision versions)."
     required: false
     default: "false"
+
+outputs:
+  run-id:
+    description: |
+      The id of the CodSpeed run the results were uploaded to.
+      Requires runner v5.4.0 or later.
+    value: ${{ steps.run-benchmarks.outputs.run-id }}
 
 runs:
   using: "composite"
@@ -291,6 +310,7 @@ runs:
         fi
 
     - name: Run the benchmarks
+      id: run-benchmarks
       shell: bash
       env:
         GH_MATRIX: "${{ toJson(matrix) }}"
@@ -344,6 +364,13 @@ runs:
         fi
         if [ "${{ inputs.simulation-track-subprocess }}" = "true" ]; then
           RUNNER_ARGS+=(--simulation-track-subprocess)
+        fi
+
+        if [ "${{ inputs.disable-memory-track-physical }}" = "true" ]; then
+          RUNNER_ARGS+=(--disable-memory-track-physical)
+        fi
+        if [ "${{ inputs.disable-memory-capture-stack }}" = "true" ]; then
+          RUNNER_ARGS+=(--disable-memory-capture-stack)
         fi
 
         if [ -n "$CODSPEED_INPUT_RUN" ]; then
