@@ -106,6 +106,18 @@ GitHub Actions for running [CodSpeed](https://codspeed.io) in your CI.
     # enable. Requires runner v5 or later.
     # Defaults to "false".
     exclude-allocations: ""
+
+    # [OPTIONAL]
+    # Disable physical (resident) memory tracking in `memory` mode.
+    # Set to "true" to disable. Enabled by default on supported runners.
+    # Requires runner v5.4.0 or later.
+    disable-memory-track-physical: ""
+
+    # [OPTIONAL]
+    # Disable allocation call stack capture in `memory` mode.
+    # Set to "true" to disable. Enabled by default on supported runners.
+    # Requires runner v5.4.0 or later.
+    disable-memory-capture-stack: ""
 ```
 
 # Outputs
