@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ${{ fromJson(github.actor == 'dependabot[bot]' && '["ubuntu-latest"]' || '["ubuntu-22.04","ubuntu-24.04","ubuntu-latest"]') }}
+        os: ${{ fromJson(github.actor == 'dependabot[bot]' && '["ubuntu-latest"]' || '["ubuntu-22.04","ubuntu-24.04","ubuntu-26.04","ubuntu-22.04-arm","ubuntu-24.04-arm","ubuntu-26.04-arm"]') }}
         mode:
           - simulation
           - instrumentation
