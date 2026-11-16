@@ -157,7 +157,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.9"
+          python-version: "3.13"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -188,8 +188,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: Run benchmarks
   benchmarks:
+    name: Run benchmarks
     runs-on: ubuntu-latest
     permissions: # optional for public repositories
       contents: read
