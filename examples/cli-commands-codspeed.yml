@@ -23,7 +23,7 @@ jobs:
       # Install your toolchain and build your executable here.
 
       - name: Run the benchmarks defined in codspeed.yml
-        uses: CodSpeedHQ/action@v5
+        uses: step-security/codspeedhq-action@v5
         with:
           mode: walltime
           # No `run` input: the action runs the benchmarks of codspeed.yml.

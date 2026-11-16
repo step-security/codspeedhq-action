@@ -28,7 +28,7 @@ jobs:
           java-version: 21
 
       - name: Run Kotlin benchmarks
-        uses: CodSpeedHQ/action@v5
+        uses: step-security/codspeedhq-action@v5
         with:
           mode: walltime # the JVM integration only supports walltime mode
           run: ./gradlew jmh --no-daemon # a Gradle daemon would outlive the build and keep this step waiting
