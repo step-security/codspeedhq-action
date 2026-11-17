@@ -1,0 +1,12 @@
+{
+  "$comment": "Managed automatically when syncing with upstream. Do not edit by hand.",
+  "schema_version": 1,
+  "onboarding_type": "copied",
+  "action_type": "composite",
+  "upstream": {
+    "repository": "CodSpeedHQ/action",
+    "synced_tag": "v5.6.3",
+    "synced_commit": "af75f77f17a054769abefaa42fe8dc2975469b5f",
+    "archived": false
+  }
+}
